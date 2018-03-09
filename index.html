@@ -60,8 +60,9 @@
                 }
                 
                 function getKeys(data) {
-                    var keys = data.keys();
-                    return keys;
+                    var values = [];
+                    data.keys(values);
+                    return values;
                 }
 
                 document.getElementById("test").innerHTML = getKeys(sourceData).toString();
