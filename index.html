@@ -59,11 +59,19 @@
                 }
 
                 function totalData(data) {
-                    total = 0;
+                    var total = 0;
                     for(x in data) {
                         total += data[x];
                     }
                     return total;
+                }
+                
+                function getTotals(data) {
+                    var totals = [];
+                    for(x in data){
+                        totals.push(totalData(x));
+                    }
+                    return totals;
                 }
 
                 // TODO: Build data visualisation
@@ -74,7 +82,7 @@
                         labels: ["Veg", "Meat", "Extras", "Veg Boxes"],
                         datasets: [{
                             label: '# of Sales',
-                            data: [totalData(sourceData.Veg), totalData(sourceData.Meat), totalData(sourceData.Extras), totalData(sourceData["Veg boxes"])],
+                            data: getTotals(getCategories(sourceData)),
                             backgroundColor: [
                                 'rgba(75, 192, 192, 0.2)',
                                 'rgba(255, 99, 132, 0.2)',
