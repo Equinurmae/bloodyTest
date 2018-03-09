@@ -85,7 +85,7 @@
                         labels: ["Veg", "Meat", "Extras", "Veg Boxes"],
                         datasets: [{
                             label: '# of Sales',
-                            data: [totalData(getCategories(sourceData)[0]), 1000, 1000, 1000],
+                            data: getTotals(getCategories(sourceData)),
                             backgroundColor: [
                                 'rgba(75, 192, 192, 0.2)',
                                 'rgba(255, 99, 132, 0.2)',
