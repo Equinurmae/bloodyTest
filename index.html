@@ -104,8 +104,8 @@
                     return sliced;
                 }
                 
-                function showDetail {
-                    window.location.href = 'https://equinurmae.github.io/bloodyTest/veg.html';
+                function showDetail(evt) {
+                    document.getElementById("test").innerHTML = "test";
                 }
                 
                 document.getElementById("test").innerHTML = getNthValues(getArray(sourceData.Veg), 0, 10).toString();
@@ -183,7 +183,6 @@
                         }]
                     },
                     options: {
-                        onClick: showDetail,
                         scales: {
                             yAxes: [{
                                 ticks: {
@@ -195,7 +194,8 @@
                                     autoSkip:false
                                 }
                             }],
-                        }
+                        },
+                        onClick: showDetail
                     }
                 });
 
