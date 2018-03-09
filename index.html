@@ -83,29 +83,26 @@
                     return totals;
                 }
                 
-                function getArray(data, num) {
+                function getArray(data) {
                     var array = [];
-                    var result = [];
                     
                     for(x in data){
                         array.push([x, data[x]]);
                     }
                     
                     array.sort(function(a, b) {return b[1] - a[1];});                    
-                    result = array.slice(num);
                     
-                    return result;
+                    return array;
                 }
                 
-                function getNthValues(array, n){
+                function getNthValues(array, n, sliceNum){
                     var result = [];
                     for(i = 0; i < array.length; i++){
                         result.push(array[i][n]);
                     }
-                    return result;
+                    return result.slice(sliceNum);
                 }
                 
-                document.getElementById("test").innerHTML = getArray(sourceData.Veg, 10).toString();
 
                 // TODO: Build data visualisation
                 var ctx = document.getElementById("dataChart").getContext('2d');
@@ -148,10 +145,10 @@
                 var vegChart = new Chart(ctx, {
                     type: 'bar',
                     data: {
-                        labels: getNthValues(getArray(sourceData.Veg, 10), 0),
+                        labels: getNthValues(getArray(sourceData.Veg), 0, 10),
                         datasets: [{
                             label: '# of Sales',
-                            data: getNthValues(getArray(sourceData.Veg, 10), 1),
+                            data: getNthValues(getArray(sourceData.Veg), 1, 10),
                             backgroundColor: [
                                 'rgba(75, 192, 192, 0.2)',
                                 'rgba(75, 192, 192, 0.2)',
