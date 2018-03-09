@@ -64,6 +64,7 @@
                     return keys;
                 }
 
+                document.getElementById("test").innerHTML = JSON.stringify(getKeys(sourceData));
                 function totalData(data) {
                     var total = 0;
                     for(x in data) {
