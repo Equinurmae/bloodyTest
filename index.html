@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Riverford Data Analytics</title>
+        <link rel="stylesheet" href="css/style.css">
+        <script src="js/Chart.bundle.js"></script>
+        <style type="text/css">
+            /* Chart.js */
+            @-webkit-keyframes chartjs-render-animation {
+                from {
+                    opacity: 0.99
+                }
+                to {
+                    opacity: 1
+                }
+            }
+
+            @keyframes chartjs-render-animation {
+                from {
+                    opacity: 0.99
+                }
+                to {
+                    opacity: 1
+                }
+            }
+
+            .chartjs-render-monitor {
+                -webkit-animation: chartjs-render-animation 0.001s;
+                animation: chartjs-render-animation 0.001s;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Riverford Data Analytics</h1>
+        <canvas id="dataChart" width="200" height="200"></canvas>
+
+        <script>
+            var sourceData;
+
+            // Initial data load
+            fetch("data.json", {
+                method: "GET",
+                headers: new Headers({
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                })
+            }).then(function (body) {
+                return body.json();
+            }).then(function (data) {
+                sourceData = data;
+
+                function totalData(data) {
+                    total = 0;
+                    for(x in data) {
+                        total += data[x];
+                    }
+                    return total;
+                }
+
+                // TODO: Build data visualisation
+                var ctx = document.getElementById("dataChart").getContext('2d');
+                var dataChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ["Veg", "Meat", "Extras", "Veg Boxes"],
+                        datasets: [{
+                            label: '# of Sales',
+                            data: [totalData(sourceData.Veg), totalData(sourceData.Meat), totalData(sourceData.Extras), totalData(sourceData["Veg boxes"])],
+                            backgroundColor: [
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                            ],
+                            borderColor: [
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(255,99,132,1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero:true
+                                }
+                            }]
+                        }
+                    }
+                });
+
+            });
+
+        </script>
+    </body>
+</html>
