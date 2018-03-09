@@ -100,11 +100,11 @@
                     for(i = 0; i < array.length; i++){
                         result.push(array[i][n]);
                     }
-                    var sliced = result.slice(sliceNum);
+                    var sliced = result.slice(9);
                     return sliced;
                 }
                 
-                document.getElementById("test").innerHTML = getNthValues(getArray(sourceData.Veg), 0, 10).slice(10).toString();
+                document.getElementById("test").innerHTML = getNthValues(getArray(sourceData.Veg), 0, 9).toString();
 
                 // TODO: Build data visualisation
                 var ctx = document.getElementById("dataChart").getContext('2d');
@@ -147,10 +147,10 @@
                 var vegChart = new Chart(ctx, {
                     type: 'bar',
                     data: {
-                        labels: getNthValues(getArray(sourceData.Veg), 0, 10),
+                        labels: getNthValues(getArray(sourceData.Veg), 0, 9),
                         datasets: [{
                             label: '# of Sales',
-                            data: getNthValues(getArray(sourceData.Veg), 1, 10),
+                            data: getNthValues(getArray(sourceData.Veg), 1, 9),
                             backgroundColor: [
                                 'rgba(75, 192, 192, 0.2)',
                                 'rgba(75, 192, 192, 0.2)',
