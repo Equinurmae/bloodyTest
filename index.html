@@ -141,10 +141,10 @@
                 var vegChart = new Chart(ctx, {
                     type: 'bar',
                     data: {
-                        labels: getKeys(getNthValue(getArray(sourceData.Veg, 10),0)),
+                        labels: getNthValue(getArray(sourceData.Veg, 10),0),
                         datasets: [{
                             label: '# of Sales',
-                            data: getNthValue(getArray(sourceData.Veg, 10),1),
+                            data: [100,100,100,100,100,100,100,100,100,100],
                             backgroundColor: [
                                 'rgba(75, 192, 192, 0.2)',
                                 'rgba(75, 192, 192, 0.2)',
