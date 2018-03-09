@@ -1,1 +1,164 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Riverford Data Analytics</title>
+        <link rel="stylesheet" href="css/style.css">
+        <script src="js/Chart.bundle.js"></script>
+        <style type="text/css">
+            /* Chart.js */
+            @-webkit-keyframes chartjs-render-animation {
+                from {
+                    opacity: 0.99
+                }
+                to {
+                    opacity: 1
+                }
+            }
+
+            @keyframes chartjs-render-animation {
+                from {
+                    opacity: 0.99
+                }
+                to {
+                    opacity: 1
+                }
+            }
+
+            .chartjs-render-monitor {
+                -webkit-animation: chartjs-render-animation 0.001s;
+                animation: chartjs-render-animation 0.001s;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Riverford Data Analytics</h1>
+        <canvas id="vegChart" width="200" height="200"></canvas>
+
+        <script>
+            var sourceData;
+
+            // Initial data load
+            fetch("data.json", {
+                method: "GET",
+                headers: new Headers({
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                })
+            }).then(function (body) {
+                return body.json();
+            }).then(function (data) {
+                sourceData = data;
+                
+                function getCategories(data) {
+                    var categories = [];
+                    for(x in data){
+                        categories.push(data[x]);
+                    }
+                    return categories;
+                }
+                
+                function getKeys(data) {
+                    var values = Object.keys(data);
+                    return values;
+                }
+
+                
+                
+                function totalData(data) {
+                    var total = 0;
+                    for(x in data) {
+                        total += data[x];
+                    }
+                    return total;
+                }
+                
+                function getTotals(data) {
+                    var totals = [];
+                    for(i = 0; i < data.length; i++){
+                        totals.push(totalData(data[i]));
+                    }
+                    return totals;
+                }
+                
+                function getArray(data) {
+                    var array = [];
+                    
+                    for(x in data){
+                        array.push([x, data[x]]);
+                    }
+                    
+                    array.sort(function(a, b) {return b[1] - a[1];});                    
+                    
+                    return array;
+                }
+                
+                function getNthValues(array, n, sliceNum){
+                    var result = [];
+                    for(i = 0; i < array.length; i++){
+                        result.push(array[i][n]);
+                    }
+                    var sliced = result.slice(0,sliceNum);
+                    return sliced;
+                }
+                
+                document.getElementById("test").innerHTML = getNthValues(getArray(sourceData.Veg), 0, 10).toString();
+
+                // TODO: Build data visualisation
+                var ctx = document.getElementById("vegChart").getContext('2d');
+                var vegChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: getNthValues(getArray(sourceData.Veg), 0, 10),
+                        datasets: [{
+                            label: '# of Sales',
+                            data: getNthValues(getArray(sourceData.Veg), 1, 10),
+                            backgroundColor: [
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                            ],
+                            borderColor: [
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(75, 192, 192, 1)',
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero:true
+                                }
+                            }],
+                            xAxes: [{
+                                ticks: {
+                                    autoSkip:false
+                                }
+                            }],
+                        }
+                    }
+                });
+
+            });
+
+        </script>
+    </body>
+</html>
 
