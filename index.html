@@ -49,6 +49,14 @@
                 return body.json();
             }).then(function (data) {
                 sourceData = data;
+                
+                function getCategories(data) {
+                    var categories = [];
+                    for(x in data){
+                        categories.push(x);
+                    }
+                    return categories;
+                }
 
                 function totalData(data) {
                     total = 0;
