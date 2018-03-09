@@ -68,8 +68,8 @@
                 
                 function getTotals(data) {
                     var totals = [];
-                    for(x in data){
-                        totals.push(totalData(sourceData.x));
+                    for(i = 0; i < data.length; i++){
+                        totals.push(totalData(data[i]));
                     }
                     return totals;
                 }
