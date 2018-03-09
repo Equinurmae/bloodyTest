@@ -59,7 +59,10 @@
                     return categories;
                 }
                 
-                document.getElementById("test").innerHTML = JSON.stringify(getCategories(sourceData)) + "<br/>";
+                function getKeys(data) {
+                    var keys = data.keys();
+                    return keys;
+                }
 
                 function totalData(data) {
                     var total = 0;
@@ -82,7 +85,7 @@
                 var dataChart = new Chart(ctx, {
                     type: 'bar',
                     data: {
-                        labels: ["Veg", "Meat", "Extras", "Veg Boxes"],
+                        labels: getKeys(sourceData),
                         datasets: [{
                             label: '# of Sales',
                             data: getTotals(getCategories(sourceData)),
