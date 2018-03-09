@@ -59,7 +59,7 @@
                     return categories;
                 }
                 
-                document.getElementById("test").innerHTML = totalData(getCategories(sourceData)[0]) + "<br/>";
+                document.getElementById("test").innerHTML = JSON.stringify(getCategories(sourceData)[0]) + "<br/>";
 
                 function totalData(data) {
                     var total = 0;
