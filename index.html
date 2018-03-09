@@ -89,7 +89,8 @@
                         array.push([x, data[x]]);
                     }
                     array.sort(function(a, b) {return b[1] - a[1];});
-                    return array.slice(num);
+                    var result = array.slice(num);
+                    return result;
                 }
                 
                 function getNthValues(array, n){
@@ -143,7 +144,7 @@
                 var vegChart = new Chart(ctx, {
                     type: 'bar',
                     data: {
-                        labels: getNthValues(getArray(sourceData.Veg, 10),0),
+                        labels: ['a','a','a','a','a','a','a','a','a','a'],
                         datasets: [{
                             label: '# of Sales',
                             data: [100,100,100,100,100,100,100,100,100,100],
