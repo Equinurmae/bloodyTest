@@ -104,7 +104,7 @@
                     return sliced;
                 }
                 
-                document.getElementById("test").innerHTML = getNthValues(getArray(sourceData.Veg)).toString();
+                document.getElementById("test").innerHTML = getNthValues(getArray(sourceData.Veg), 0, 10).toString();
 
                 // TODO: Build data visualisation
                 var ctx = document.getElementById("dataChart").getContext('2d');
