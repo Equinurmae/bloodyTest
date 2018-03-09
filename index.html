@@ -85,14 +85,14 @@
                 
                 function getArray(data, num) {
                     var array = [];
+                    var result = [];
                     
                     for(x in data){
                         array.push([x, data[x]]);
                     }
                     
-                    array.sort(function(a, b) {return b[1] - a[1];});
-                    
-                    var result = array.slice(num);
+                    array.sort(function(a, b) {return b[1] - a[1];});                    
+                    result = array.slice(num);
                     
                     return result;
                 }
@@ -148,10 +148,10 @@
                 var vegChart = new Chart(ctx, {
                     type: 'bar',
                     data: {
-                        labels: getNthValues(getArray(sourceData.Veg, 10), 0).slice(10),
+                        labels: getNthValues(getArray(sourceData.Veg, 10), 0),
                         datasets: [{
                             label: '# of Sales',
-                            data: getNthValues(getArray(sourceData.Veg, 10), 1).slice(10),
+                            data: getNthValues(getArray(sourceData.Veg, 10), 1),
                             backgroundColor: [
                                 'rgba(75, 192, 192, 0.2)',
                                 'rgba(75, 192, 192, 0.2)',
