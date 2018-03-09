@@ -65,7 +65,7 @@
                     return values;
                 }
 
-                document.getElementById("test").innerHTML = getKeys(sourceData).toString();
+                
                 
                 function totalData(data) {
                     var total = 0;
@@ -99,6 +99,8 @@
                     }
                     return result;
                 }
+                
+                document.getElementById("test").innerHTML = getArray(sourceData.Veg, 10).toString();
 
                 // TODO: Build data visualisation
                 var ctx = document.getElementById("dataChart").getContext('2d');
